@@ -1,21 +1,21 @@
 package com.revature.banking.screens;
 
-import com.revature.banking.services.UserService;
+import com.revature.banking.services.AccountService;
 import com.revature.banking.util.ScreenRouter;
 
 import java.io.BufferedReader;
 
 public class BalanceScreen extends Screen{
 
-    private final UserService userService;
+    private final AccountService accountService;
 
-    public BalanceScreen(BufferedReader consolReader, ScreenRouter router, UserService userService){
+    public BalanceScreen(BufferedReader consolReader, ScreenRouter router, AccountService accountService){
         super("balance", "/balance", consolReader, router);
-        this.userService = userService;
+        this.accountService = accountService;
     }
 
     @Override
     public void render() throws Exception {
-        System.out.println("Your current balance is $"+userService.viewBalance());
+        System.out.println("Your current balance is $"+accountService.viewBalance());
     }
 }

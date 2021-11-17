@@ -4,6 +4,7 @@ import com.revature.banking.daos.AppUserDAO;
 import com.revature.banking.exceptions.AuthenticationException;
 import com.revature.banking.exceptions.InvalidRequestException;
 import com.revature.banking.exceptions.ResourcePersistenceException;
+import com.revature.banking.models.Account;
 import com.revature.banking.models.AppUser;
 
 public class UserService {
@@ -53,7 +54,7 @@ public class UserService {
 
     }
 
-    public void authenticateUser(String username, String password) {
+    public AppUser authenticateUser(String username, String password) {
 
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
             throw new InvalidRequestException("Invalid credential values provided!");
@@ -66,6 +67,7 @@ public class UserService {
         }
 
         sessionUser = authenticatedUser;
+        return sessionUser;
 
     }
 
@@ -77,6 +79,25 @@ public class UserService {
         return sessionUser != null;
     }
 
+    public boolean hasAccount(){
+        Account account = userDAO.findAccount(sessionUser.getId());
+        System.out.println(sessionUser.getId());
+        System.out.println("DEBUG ACCOUNT VARIABLE:" +
+                "account_id: " + account.getAccountId() + "\n"+
+                "name: " + account.getName() + "\n"+
+                "balance: " + account.getBalance() + "\n"+
+                "user_id: " + account.getUserId());
+        System.out.println("\nDEBUG USER VARIABLE:" +
+                "user_id: " + sessionUser.getId() + "\n"+
+                "first_name: " + sessionUser.getFirstName() + "\n"+
+                "last_name: " + sessionUser.getLastName() + "\n"+
+                "email: " + sessionUser.getEmail() + "\n"+
+                "username: " + sessionUser.getUsername() + "\n"+
+                "password: " + sessionUser.getPassword());
+        if(account == null) return false;
+        else return true;
+    }
+
     public boolean isUserValid(AppUser user) {
         if (user == null) return false;
         if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
@@ -84,34 +105,6 @@ public class UserService {
         if (user.getEmail() == null || user.getEmail().trim().equals("")) return false;
         if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
         return user.getPassword() != null && !user.getPassword().trim().equals("");
-    }
-
-    public boolean deposit(String amount){
-        double balance = sessionUser.getBalance();
-        double addedAmount = Double.parseDouble(amount);
-        sessionUser.setBalance(balance + addedAmount);
-        userDAO.update(sessionUser);
-        return true;
-    }
-
-    public boolean withdrawal(String amount){
-        double balance = sessionUser.getBalance();
-        double subtractedAmount = Double.parseDouble(amount);
-        if((balance-subtractedAmount) >= 0){
-            sessionUser.setBalance(balance - subtractedAmount);
-            userDAO.update(sessionUser);
-            return true;
-        }
-        else return false;
-
-    }
-
-    public double viewBalance(){
-        if(sessionUser == null){
-            //query balance from aws
-            sessionUser = userDAO.findById(sessionUser.getId());
-        }
-        return sessionUser.getBalance();
     }
 
 }

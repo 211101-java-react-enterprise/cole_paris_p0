@@ -48,6 +48,8 @@ public class AppUser extends Object {
         this(firstName, lastName, email, username, password);
         this.id = id;
         this.balance = balance;
+        Account account = new Account();
+        account.setUserId(id);
     }
 
     public AppUser() {

@@ -28,11 +28,10 @@ public class DashboardScreen extends Screen {
         while (userService.isSessionActive()) {
             System.out.printf("\n%s's Dashboard\n", sessionUser.getFirstName());
 
-            String menu = "1) Create new Account\n" +
-                    "2) Deposit Funds\n" +
-                    "3) Make a Withdrawal\n" +
-                    "4) View balance\n" +
-                    "5) Logout\n"+
+            String menu = "1) Deposit Funds\n" +
+                    "2) Make a Withdrawal\n" +
+                    "3) View balance\n" +
+                    "4) Logout\n"+
                     "> ";
 
             System.out.print(menu);
@@ -41,21 +40,18 @@ public class DashboardScreen extends Screen {
 
             switch (userSelection) {
                 case "1":
-                    System.out.println("Create new account selected");
-                    break;
-                case "2":
                     System.out.println("Deposit funds selected");
                     router.navigate("/deposit");
                     break;
-                case "3":
+                case "2":
                     System.out.println("Make withdrawal selected");
                     router.navigate("/withdrawal");
                     break;
-                case "4":
+                case "3":
                     System.out.println("View account balance selected");
                     router.navigate("/balance");
                     break;
-                case "5":
+                case "4":
                     userService.logout();
                 default:
                     System.out.println("The user made an invalid selection");
