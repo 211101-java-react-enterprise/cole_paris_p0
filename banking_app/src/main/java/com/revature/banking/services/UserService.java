@@ -6,13 +6,16 @@ import com.revature.banking.exceptions.InvalidRequestException;
 import com.revature.banking.exceptions.ResourcePersistenceException;
 import com.revature.banking.models.Account;
 import com.revature.banking.models.AppUser;
+import com.revature.banking.util.Logger;
 
 public class UserService {
 
     private final AppUserDAO userDAO ;
     private AppUser sessionUser;
+    private Logger logger;
 
     public UserService(AppUserDAO userDAO) {
+        logger = Logger.getLogger(false);
         this.userDAO = userDAO;
         this.sessionUser = null;
     }
@@ -24,6 +27,7 @@ public class UserService {
     public boolean registerNewUser(AppUser newUser) {
 
         if (!isUserValid(newUser)) {
+            logger.log("Invalid user data provided");
             throw new InvalidRequestException("Invalid user data provided!");
         }
 
