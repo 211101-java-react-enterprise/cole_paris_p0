@@ -81,8 +81,8 @@ public class UserService {
 
     public boolean hasAccount(){
         Account account = userDAO.findAccount(sessionUser.getId());
-        System.out.println(sessionUser.getId());
-        System.out.println("DEBUG ACCOUNT VARIABLE:" +
+        System.out.println(account);
+        /*System.out.println("DEBUG ACCOUNT VARIABLE:" +
                 "account_id: " + account.getAccountId() + "\n"+
                 "name: " + account.getName() + "\n"+
                 "balance: " + account.getBalance() + "\n"+
@@ -93,7 +93,7 @@ public class UserService {
                 "last_name: " + sessionUser.getLastName() + "\n"+
                 "email: " + sessionUser.getEmail() + "\n"+
                 "username: " + sessionUser.getUsername() + "\n"+
-                "password: " + sessionUser.getPassword());
+                "password: " + sessionUser.getPassword());*/
         if(account == null) return false;
         else return true;
     }

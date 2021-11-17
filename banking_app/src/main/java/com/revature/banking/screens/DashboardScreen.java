@@ -36,7 +36,7 @@ public class DashboardScreen extends Screen {
 
             System.out.print(menu);
 
-            String userSelection = consoleReader.readLine();
+            String userSelection = consolReader.readLine();
 
             switch (userSelection) {
                 case "1":
@@ -53,11 +53,12 @@ public class DashboardScreen extends Screen {
                     break;
                 case "4":
                     userService.logout();
+                    break;
                 default:
                     System.out.println("The user made an invalid selection");
             }
         }
-
+        //TODO: disallow negative withdrawals
     }
 
 }

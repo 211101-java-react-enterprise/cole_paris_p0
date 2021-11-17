@@ -20,10 +20,10 @@ public class CreateAccountScreen extends Screen{
     public void render() throws Exception {
         System.out.println("Provide basic details:" +
                 "\n What would you like to call the account?");
-        String name = consoleReader.readLine();
+        String name = consolReader.readLine();
         System.out.println("Great choice! \n" +
                 "How much would you initially like to deposit?");
-        String initialDeposit = consoleReader.readLine();
+        String initialDeposit = consolReader.readLine();
         System.out.println(accountService.getSessionUser());
         Account newAccount = new Account(name, Double.parseDouble(initialDeposit));
         newAccount.setUserId(accountService.getSessionUser().getSessionUser().getId());

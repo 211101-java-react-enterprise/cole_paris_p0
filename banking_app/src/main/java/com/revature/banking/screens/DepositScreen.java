@@ -20,7 +20,7 @@ public class DepositScreen extends Screen{
         //TODO: move this logic to UserService?
         while(validResponse == false){
             System.out.println("How much would you like to deposit?");
-            String response = consoleReader.readLine();
+            String response = consolReader.readLine();
             try{
                 amt = Double.parseDouble(response);
                 validResponse = true;

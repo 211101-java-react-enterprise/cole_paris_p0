@@ -21,7 +21,7 @@ public class WelcomeScreen extends Screen {
                 "3) Exit\n" +
                 "> ");
 
-        String userSelection = consoleReader.readLine();
+        String userSelection = consolReader.readLine();
 
         switch (userSelection) {
             case "1":

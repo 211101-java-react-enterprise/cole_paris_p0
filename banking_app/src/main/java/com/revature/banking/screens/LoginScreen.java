@@ -24,16 +24,16 @@ public class LoginScreen extends Screen {
 
         System.out.println("Please provide your credentials to log into your account.");
         System.out.print("Username > ");
-        String username = consoleReader.readLine();
+        String username = consolReader.readLine();
         System.out.print("Password > ");
-        String password = consoleReader.readLine();
+        String password = consolReader.readLine();
 
         try {
             userService.authenticateUser(username, password);
             //TODO: if the user has an account, go to dashboard.
             //TODO: if the user does not have an account, go to account creation screen
             //router.navigate("/create_account");
-            if(userService.hasAccount())
+            if(userService.hasAccount())//if the user has an attached count, go to dashboard. Otherwise, make one!
                 router.navigate("/dashboard");
             else
                 router.navigate("/create_account");

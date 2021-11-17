@@ -56,7 +56,10 @@ public class AccountService {
 
     public boolean withdrawal(double amount){
         double balance = sessionAccount.getBalance();
-        if((balance-amount) >= 0){
+        if(amount <=0.01){
+            return false;
+        }
+        else if((balance-amount) >= 0){
             sessionAccount.setBalance(balance - amount);
             accountDAO.update(sessionAccount);
             return true;

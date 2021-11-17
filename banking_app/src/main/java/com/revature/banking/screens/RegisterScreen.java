@@ -22,19 +22,19 @@ public class RegisterScreen extends Screen {
         System.out.println("The user selected Register");
         System.out.println("Please provide us with some basic information.");
         System.out.print("First name: ");
-        String firstName = consoleReader.readLine();
+        String firstName = consolReader.readLine();
 
         System.out.print("Last name: ");
-        String lastName = consoleReader.readLine();
+        String lastName = consolReader.readLine();
 
         System.out.print("Email: ");
-        String email = consoleReader.readLine();
+        String email = consolReader.readLine();
 
         System.out.print("Username: ");
-        String username = consoleReader.readLine();
+        String username = consolReader.readLine();
 
         System.out.print("Password: ");
-        String password = consoleReader.readLine();
+        String password = consolReader.readLine();
 
         System.out.printf("Provided user first and last name: { \"firstName\": %s, \"lastName\": %s}\n", firstName, lastName);
         // String format specifiers: %s (strings), %d (whole numbers), %f (decimal values)
