@@ -30,28 +30,21 @@ public class WithdrawalScreen extends Screen {
                 }
                 else if(amountWithdrawn > 0){ //if withdrawal returns false and amount is greater than 0, then overdraft
                     System.out.println("Error: You tried to withdrawal $"+response+ " but you only have $"+accountService.viewBalance()+" in your account.");
-                    if(dashboardReturnOption(consolReader)) {//check whether user wants to return to dashboard
-                        validResponse = true;
-                        router.navigate("/dashboard");
-                    }
 
                 }
                 else if (amountWithdrawn < 0.01){//if user tries to withdrawal 0 or negative value
                     System.out.println("Error: you must withdrawal at least $0.01.");
-                    if(dashboardReturnOption(consolReader)) {//check whether user wants to return to dashboard
-                        validResponse = true;
-                        router.navigate("/dashboard");
-                    }
                 }
             } catch(Exception e){
-                System.out.println("Invalid response. Please enter the amount of money you would like to withdrawal" +
-                        "in the form of a decimal number. For example: 50.43 or 50");
+                System.out.println("Invalid response. Please enter the amount of money you would like to withdrawal " +
+                        "in the form of an integer or decimal number. For example: 50 or 50.43");
 
             }
         }
         //router.navigate("dashboard");
     }
 
+    //for use in future update. gives user option to return to dashboard when called. Currently too buggy.
     private boolean dashboardReturnOption(BufferedReader consolReader) throws IOException {
         while(true){
             System.out.println("Would you like to return to the dashboard? (y/n)");

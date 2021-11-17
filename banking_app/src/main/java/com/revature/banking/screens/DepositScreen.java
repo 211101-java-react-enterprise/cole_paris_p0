@@ -3,6 +3,7 @@ import com.revature.banking.util.ScreenRouter;
 import com.revature.banking.services.AccountService;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 
 public class DepositScreen extends Screen{
     private final AccountService accountService;
@@ -17,19 +18,34 @@ public class DepositScreen extends Screen{
         System.out.println("You have: $"+accountService.viewBalance());
         boolean validResponse = false;
         double amt = 0.0;
-        //TODO: move this logic to UserService?
         while(validResponse == false){
             System.out.println("How much would you like to deposit?");
             String response = consolReader.readLine();
             try{
                 amt = Double.parseDouble(response);
-                validResponse = true;
+                if(amt<=0) {
+                    System.out.println("Invalid deposit. Please enter an amount greater than $0.01");
+                }
+                else {
+                    accountService.deposit(amt);
+                    System.out.println("Success! You now have: $" + accountService.viewBalance());
+                    validResponse = true;
+                }
             } catch(Exception e){
                 System.out.println("Invalid Deposit. Please enter a number.");
             }
         }
-        accountService.deposit(amt);
-        System.out.println("Success! You now have: $" + accountService.viewBalance());
-        //TODO: call class that tracks the users money
+        }
+
+
+        //for use in future update. gives user option to return to dashboard when called. Currently too buggy.
+    private boolean dashboardReturnOption(BufferedReader consolReader) throws IOException {
+        while(true){
+            System.out.println("Would you like to return to the dashboard? (y/n)");
+            String response = consolReader.readLine();
+            if(response.equals("y")) return true;
+            else if(response.equals("n")) return false;
+            else System.out.println("Invalid response: please enter either the letter 'y' or the letter 'n' into the terminal");
+        }
     }
 }

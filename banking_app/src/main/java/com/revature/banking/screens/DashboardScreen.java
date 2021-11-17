@@ -58,7 +58,6 @@ public class DashboardScreen extends Screen {
                     System.out.println("The user made an invalid selection");
             }
         }
-        //TODO: disallow negative withdrawals
     }
 
 }

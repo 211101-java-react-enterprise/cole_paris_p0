@@ -30,9 +30,6 @@ public class LoginScreen extends Screen {
 
         try {
             userService.authenticateUser(username, password);
-            //TODO: if the user has an account, go to dashboard.
-            //TODO: if the user does not have an account, go to account creation screen
-            //router.navigate("/create_account");
             if(userService.hasAccount())//if the user has an attached count, go to dashboard. Otherwise, make one!
                 router.navigate("/dashboard");
             else

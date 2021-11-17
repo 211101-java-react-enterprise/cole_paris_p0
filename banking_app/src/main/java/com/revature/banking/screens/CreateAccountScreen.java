@@ -18,14 +18,9 @@ public class CreateAccountScreen extends Screen{
 
     @Override
     public void render() throws Exception {
-        System.out.println("Provide basic details:" +
-                "\n What would you like to call the account?");
-        String name = consolReader.readLine();
-        System.out.println("Great choice! \n" +
-                "How much would you initially like to deposit?");
-        String initialDeposit = consolReader.readLine();
-        System.out.println(accountService.getSessionUser());
-        Account newAccount = new Account(name, Double.parseDouble(initialDeposit));
+        System.out.println("New User Detected: Creating account..." +
+                "\nInitializing balance to 0...");
+        Account newAccount = new Account(0.0);//initializing balance to 0
         newAccount.setUserId(accountService.getSessionUser().getSessionUser().getId());
 
         accountService.registerNewAccount(newAccount);

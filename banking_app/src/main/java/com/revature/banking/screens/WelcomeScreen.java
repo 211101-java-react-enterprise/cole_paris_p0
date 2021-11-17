@@ -15,7 +15,7 @@ public class WelcomeScreen extends Screen {
     @Override
     public void render() throws Exception {
 
-        System.out.print("Welcome to Quizzard!\n" +
+        System.out.print("Welcome to BankingPro! Please select from the following options: \n" +
                 "1) Login\n" +
                 "2) Register\n" +
                 "3) Exit\n" +

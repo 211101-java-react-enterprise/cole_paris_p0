@@ -4,6 +4,7 @@ import com.revature.banking.models.Account;
 import com.revature.banking.models.AppUser;
 import com.revature.banking.util.ConnectionFactory;
 import com.revature.banking.util.List;
+import org.postgresql.util.PSQLException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +18,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from app_users1 where username = ?";
+            String sql = "select * from users where username = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
@@ -34,7 +35,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("username already taken");;
         }
 
         return null;
@@ -45,7 +46,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from app_users1 where email = ?";
+            String sql = "select * from users where email = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
@@ -62,7 +63,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("email already taken");
         }
 
         return null;
@@ -73,7 +74,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from app_users1 where username = ? and password = ?";
+            String sql = "select * from users where username = ? and password = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
@@ -105,7 +106,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
 
             newUser.setId(UUID.randomUUID().toString());
 
-            String sql = "insert into app_users1 (id, first_name, last_name, email, username, password) values (?, ?, ?, ?, ?, ?)";
+            String sql = "insert into users (id, first_name, last_name, email, username, password) values (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, newUser.getId());
             pstmt.setString(2, newUser.getFirstName());
@@ -122,7 +123,8 @@ public class AppUserDAO implements CrudDAO<AppUser> {
 
         } catch (SQLException e) {
             // TODO log this and throw our own custom exception to be caught in the service layer
-            e.printStackTrace();
+            System.out.println("user already exists");
+            //e.printStackTrace();
 
         }
 
@@ -137,7 +139,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
             //logic here
 
             //sql here
-            String sql = "update app_users1 " +
+            String sql = "update users " +
                     "set first_name = ?, last_name = ?, email = ?, username = ?, password = ?, balance = ? " +
                     "where id = ?;";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -163,14 +165,13 @@ public class AppUserDAO implements CrudDAO<AppUser> {
     public Account findAccount(String id){
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from accounts1 where id = ?";
+            String sql = "select * from accounts where id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 Account account = new Account();
                 account.setAccountId(rs.getString("account_id"));
-                account.setName(rs.getString("name"));
                 account.setBalance(rs.getDouble("balance"));
                 account.setUserId(rs.getString("id"));
                 return account;
@@ -185,7 +186,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
     public AppUser findById(String id) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from app_users1 where id = ?";
+            String sql = "select * from users where id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             ResultSet rs = pstmt.executeQuery();

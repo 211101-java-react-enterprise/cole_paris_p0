@@ -19,12 +19,11 @@ public class AccountDAO implements CrudDAO<Account> {
 
             newAccount.setAccountId(UUID.randomUUID().toString());
 
-            String sql = "insert into accounts1 (account_id, name, balance, id) values (?, ?, ?, ?)";
+            String sql = "insert into accounts (account_id, balance, id) values (?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, newAccount.getAccountId());
-            pstmt.setString(2, newAccount.getName());
-            pstmt.setDouble(3, newAccount.getBalance());
-            pstmt.setString(4, newAccount.getUserId());
+            pstmt.setDouble(2, newAccount.getBalance());
+            pstmt.setString(3, newAccount.getUserId());
 
             int rowsInserted = pstmt.executeUpdate();
 
@@ -44,13 +43,12 @@ public class AccountDAO implements CrudDAO<Account> {
     public boolean update(Account updatedObj) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             //sql here
-            String sql = "update accounts1 " +
-                    "set name = ?, balance = ? " +
+            String sql = "update accounts " +
+                    "set balance = ? " +
                     "where account_id = ?;";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, updatedObj.getName());
-            pstmt.setDouble(2, updatedObj.getBalance());
-            pstmt.setString(3, updatedObj.getAccountId());
+            pstmt.setDouble(1, updatedObj.getBalance());
+            pstmt.setString(2, updatedObj.getAccountId());
 
             pstmt.executeUpdate();
             return true;
@@ -71,14 +69,13 @@ public class AccountDAO implements CrudDAO<Account> {
     public Account findById(String accountId) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from accounts1 where id = ?";
+            String sql = "select * from accounts where id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, accountId);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 Account account = new Account();
                 account.setAccountId(rs.getString("account_id"));
-                account.setName(rs.getString("name"));
                 account.setBalance(rs.getDouble("balance"));
                 account.setUserId(rs.getString("id"));
                 return account;
