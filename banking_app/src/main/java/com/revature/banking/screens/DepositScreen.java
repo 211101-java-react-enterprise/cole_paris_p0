@@ -26,6 +26,10 @@ public class DepositScreen extends Screen{
                 if(amt<=0) {
                     System.out.println("Invalid deposit. Please enter an amount greater than $0.01");
                 }
+                else if(amt > 999999990){
+                    System.out.println("Settle down there Jeff Bezos... Nobody has THAT much money.");
+                }
+
                 else {
                     accountService.deposit(amt);
                     System.out.println("Success! You now have: $" + accountService.viewBalance());
@@ -35,7 +39,7 @@ public class DepositScreen extends Screen{
                 System.out.println("Invalid Deposit. Please enter a number.");
             }
         }
-        }
+    }
 
 
         //for use in future update. gives user option to return to dashboard when called. Currently too buggy.
