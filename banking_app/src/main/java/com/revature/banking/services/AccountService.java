@@ -15,6 +15,12 @@ public class AccountService {
     private UserService sessionUser;
     Logger logger;
 
+    public AccountService(AccountDAO accountDAO) {
+        logger = Logger.getLogger(false);
+        this.accountDAO = accountDAO;
+        this.sessionUser = null;
+    }
+
     public AccountService(AccountDAO accountDAO, UserService sessionUser) {
         logger = Logger.getLogger(false);
         this.accountDAO = accountDAO;

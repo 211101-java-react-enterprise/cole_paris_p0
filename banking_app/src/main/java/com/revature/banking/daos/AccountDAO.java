@@ -65,6 +65,7 @@ public class AccountDAO implements CrudDAO<Account> {
         return null;
     }
 
+
     @Override
     public Account findById(String accountId) {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
@@ -72,7 +73,7 @@ public class AccountDAO implements CrudDAO<Account> {
             String sql = "select * from accounts where id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, accountId);
-            ResultSet rs = pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();//
             if (rs.next()) {
                 Account account = new Account();
                 account.setAccountId(rs.getString("account_id"));

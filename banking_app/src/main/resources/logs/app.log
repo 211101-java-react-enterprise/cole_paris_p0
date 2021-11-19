@@ -1,2 +1,27 @@
 no account found. pulling from datasource
 depositing funds
+2021-11-17T12:00:57.077 - no account found. pulling from datasource
+2021-11-17T12:00:59.555 - depositing funds
+2021-11-18 14:53:02.083 - no account found. pulling from datasource
+2021-11-18 14:53:03.536 - depositing funds
+2021-11-18 15:17:38.2 - Invalid user data provided
+2021-11-18 15:53:59.831 - no account found. pulling from datasource
+2021-11-18 15:54:06.611 - depositing funds
+2021-11-18 15:54:18.866 - withdrawing funds
+2021-11-18 15:54:18.866 - overdraft error
+2021-11-18 16:38:20.595 - no account found. pulling from datasource
+2021-11-18 16:39:39.998 - no account found. pulling from datasource
+2021-11-18 17:13:59.892 - no account found. pulling from datasource
+2021-11-18 17:14:01.699 - depositing funds
+2021-11-18 17:14:05.77 - withdrawing funds
+2021-11-18 17:14:05.77 - tried to withdrawal amount less than 0
+2021-11-18 17:14:09.189 - withdrawing funds
+2021-11-18 17:14:09.189 - overdraft error
+2021-11-18 17:34:03.934 - no account found. pulling from datasource
+2021-11-18 17:34:06.458 - withdrawing funds
+2021-11-18 17:34:11.152 - withdrawing funds
+2021-11-18 17:34:11.152 - overdraft error
+2021-11-18 17:34:47.492 - no account found. pulling from datasource
+2021-11-18 17:34:49.484 - withdrawing funds
+2021-11-18 17:34:49.484 - overdraft error
+2021-11-18 17:35:21.951 - depositing funds

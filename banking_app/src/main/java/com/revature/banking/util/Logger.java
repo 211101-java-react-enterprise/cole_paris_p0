@@ -3,6 +3,9 @@ package com.revature.banking.util;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Logger {
 
@@ -45,7 +48,8 @@ public class Logger {
         try (Writer logWriter = new FileWriter("src/main/resources/logs/app.log", true)) {
 
             String formattedMsg = String.format(message, args);
-            logWriter.write(formattedMsg + "\n");
+            Timestamp time = getTime();
+            logWriter.write(time + " - "+formattedMsg + "\n");
 
             if (printToConsole) {
                 System.out.println(ANSI_YELLOW + formattedMsg + ANSI_RESET);
@@ -55,6 +59,13 @@ public class Logger {
             e.printStackTrace();
         }
 
+    }
+
+    public Timestamp getTime(){
+        //String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")) + " " + time;
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        System.out.println(time);
+        return time;
     }
 
 

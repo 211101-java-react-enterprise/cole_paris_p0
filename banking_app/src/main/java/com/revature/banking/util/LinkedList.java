@@ -1,6 +1,13 @@
 package com.revature.banking.util;
 
-public class LinkedList<T> implements List<T> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+public class LinkedList<T> implements List<T>, Iterable<T>{
 
     private int size;
     private Node<T> head; // implicitly null
@@ -144,6 +151,34 @@ public class LinkedList<T> implements List<T> {
     public static void staticMethodExample() {
         System.out.println("This is a method that shadows the static method declared by List");
     }
+
+    public Stream<T> stream(){
+        return StreamSupport.stream(spliterator(), false);
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+
+            Node<T> current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current!=null;
+            }
+
+            @Override
+            public T next(){
+                if(!this.hasNext()){
+                    throw new NoSuchElementException();
+                }
+                T data = current.data;
+                current = current.nextNode;
+                return data;
+            }
+        };
+    }
+
 
     // Nested Inner Class
     // The outer class (LinkedList) can see all of the members of this class

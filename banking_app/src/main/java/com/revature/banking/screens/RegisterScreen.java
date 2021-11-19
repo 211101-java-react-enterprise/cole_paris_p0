@@ -4,6 +4,7 @@ import com.revature.banking.exceptions.InvalidRequestException;
 import com.revature.banking.exceptions.ResourcePersistenceException;
 import com.revature.banking.models.AppUser;
 import com.revature.banking.services.UserService;
+import com.revature.banking.util.Logger;
 import com.revature.banking.util.ScreenRouter;
 
 import java.io.BufferedReader;
@@ -11,9 +12,11 @@ import java.io.BufferedReader;
 public class RegisterScreen extends Screen {
 
     private final UserService userService;
+    private Logger logger;
 
     public RegisterScreen(BufferedReader consoleReader, ScreenRouter router, UserService userService) {
         super("RegisterScreen", "/register", consoleReader, router);
+        logger = Logger.getLogger(false);
         this.userService = userService;
     }
 
@@ -40,6 +43,7 @@ public class RegisterScreen extends Screen {
         // String format specifiers: %s (strings), %d (whole numbers), %f (decimal values)
 
         AppUser newUser = new AppUser(firstName, lastName, email, username, password);
+        newUser.setRegisterDateTime(logger.getTime());
 
         try {
             userService.registerNewUser(newUser);

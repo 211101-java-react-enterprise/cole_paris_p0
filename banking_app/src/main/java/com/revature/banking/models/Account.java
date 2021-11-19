@@ -13,15 +13,15 @@ public class Account extends Object{
         this.balance = balance;
     }
 
-    public Account(String userId, double balance) {
+    /*public Account(String userId, double balance) {
         this.userId = userId;
         this.balance = balance;
-    }
+    }*/
 
-    public Account(String userId, String name, double balance, String accountId) {
+    /*public Account(String userId, String name, double balance, String accountId) {
         this(userId, balance);
         this.accountId = accountId;
-    }
+    }*/
 
     public Account() {
         super();

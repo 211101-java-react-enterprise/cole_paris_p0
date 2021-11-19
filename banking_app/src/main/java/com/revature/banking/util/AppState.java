@@ -27,9 +27,11 @@ public class AppState {
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         AppUserDAO userDAO = new AppUserDAO();
-        AccountDAO accountDAO = new AccountDAO();
         UserService userService = new UserService(userDAO);
+
+        AccountDAO accountDAO = new AccountDAO();
         AccountService accountService = new AccountService(accountDAO, userService);
+
         router.addScreen(new WelcomeScreen(consoleReader, router));
         router.addScreen(new RegisterScreen(consoleReader, router, userService));
         router.addScreen(new LoginScreen(consoleReader, router, userService));

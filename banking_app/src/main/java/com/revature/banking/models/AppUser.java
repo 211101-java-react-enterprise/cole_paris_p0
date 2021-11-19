@@ -1,5 +1,7 @@
 package com.revature.banking.models;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 /*
@@ -30,6 +32,7 @@ public class AppUser extends Object {
     private String email;
     private String username;
     private String password;
+    private Timestamp registerDateTime;
     private double balance;
 
     public AppUser(String firstName, String lastName, String email, String username, String password) {
@@ -44,16 +47,27 @@ public class AppUser extends Object {
         this(firstName, lastName, email, username, password);
         this.id = id;
     }
-    public AppUser(String id, String firstName, String lastName, String email, String username, String password, double balance) {
+
+
+    /*public AppUser(String id, String firstName, String lastName, String email, String username, String password, double balance) {
         this(firstName, lastName, email, username, password);
         this.id = id;
         this.balance = balance;
         Account account = new Account();
         account.setUserId(id);
-    }
+    }*/
+
 
     public AppUser() {
         super();
+    }
+
+    public Timestamp getRegisterDateTime() {
+        return registerDateTime;
+    }
+
+    public void setRegisterDateTime(Timestamp registerDateTime) {
+        this.registerDateTime = registerDateTime;
     }
 
     public double getBalance() {

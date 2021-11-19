@@ -106,7 +106,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
 
             newUser.setId(UUID.randomUUID().toString());
 
-            String sql = "insert into users (id, first_name, last_name, email, username, password) values (?, ?, ?, ?, ?, ?)";
+            String sql = "insert into users (id, first_name, last_name, email, username, password, register_time) values (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, newUser.getId());
             pstmt.setString(2, newUser.getFirstName());
@@ -114,6 +114,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
             pstmt.setString(4, newUser.getEmail());
             pstmt.setString(5, newUser.getUsername());
             pstmt.setString(6, newUser.getPassword());
+            pstmt.setTimestamp(7, newUser.getRegisterDateTime());
 
             int rowsInserted = pstmt.executeUpdate();
 

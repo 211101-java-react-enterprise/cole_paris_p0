@@ -9,5 +9,6 @@ public interface Collection<T> {
     boolean isEmpty();
     boolean remove(T element);
     int size();
+    //Stream<T> stream();
 
 }

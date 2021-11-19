@@ -15,7 +15,14 @@ public class ScreenRouter {
     }
 
     public void navigate(String route) throws Exception {
+//----------------DECLARATIVE------------------------------
+//        screens.stream()
+//                .filter(screen -> screen.getRoute().equals(route))
+//                .findFirst()
+//                .orElseThrow(() -> new RuntimeException("No screen found with provided route"))
+//                .render();
 
+//-----------------IMPERATIVE------------------------------
         //System.out.println("DEBUG, screen size: " + screens.size());
         for (int i = 0; i < screens.size(); i++) {
             Screen thisScreen = screens.get(i);
